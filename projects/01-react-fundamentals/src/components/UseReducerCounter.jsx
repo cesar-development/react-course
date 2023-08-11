@@ -1,57 +1,20 @@
-import { useReducer } from 'react'
 import Button from '../elements/Button'
-
-const ACTION_TYPES = {
-  INCREASE: 'INCREASE',
-  DECREASE: 'DECREASE',
-  RESET: 'RESET'
-}
-
-const ACTIONS_REDUCER = {
-  [ACTION_TYPES.INCREASE]: (state, action) => {
-    return {
-      ...state,
-      counter: state.counter + action.payload
-    }
-  },
-  [ACTION_TYPES.DECREASE]: (state, action) => {
-    return {
-      ...state,
-      counter: state.counter - action.payload
-    }
-  },
-  [ACTION_TYPES.RESET]: (state) => {
-    return {
-      ...state,
-      counter: 0
-    }
-  }
-}
-
-const reducer = (state, action) => {
-  const { type } = action
-
-  if (!ACTIONS_REDUCER[type]) return state
-  return ACTIONS_REDUCER[type](state, action)
-}
+import { useCounter } from '../hooks/useCounter'
 
 export default function UseReducerCounter ({
   quantityToIncrease,
-  quantityToDecrease,
-  initialCounter = 0
+  quantityToDecrease
 }) {
-  const [state, dispatch] = useReducer(reducer, { counter: initialCounter })
+  const { counter, increment, decrement, reset } = useCounter({ initialCounter: 0 })
 
   return (
     <div>
-      <h1>Counter: {state.counter}</h1>
+      <h1>Counter: {counter}</h1>
 
       <Button
         $isDark
         $marginRight
-        onClick={() => {
-          dispatch({ type: ACTION_TYPES.INCREASE, payload: quantityToIncrease })
-        }}
+        onClick={() => increment(quantityToIncrease)}
       >
         Incrementar
       </Button>
@@ -59,17 +22,13 @@ export default function UseReducerCounter ({
       <Button
         $isDark
         $marginRight
-        onClick={() => {
-          dispatch({ type: ACTION_TYPES.DECREASE, payload: quantityToDecrease })
-        }}
+        onClick={() => decrement(quantityToDecrease)}
       >
         Disminuir
       </Button>
 
       <Button
-        onClick={() => {
-          dispatch({ type: ACTION_TYPES.RESET })
-        }}
+        onClick={() => reset()}
       >
         Restablecer
       </Button>

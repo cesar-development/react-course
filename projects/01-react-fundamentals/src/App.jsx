@@ -22,7 +22,6 @@ export default function App () {
           <Blog />
 
           <UseReducerCounter
-            initialCounter={0}
             quantityToIncrease={5}
             quantityToDecrease={3}
           />
