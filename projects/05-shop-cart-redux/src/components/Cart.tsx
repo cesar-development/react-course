@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import useProducts from '../hooks/useProducts'
+import useCart from '../hooks/useCart'
 import { Button } from '../elements'
 
 export default function Cart() {
-  const { cartProducts, removeFromCart } = useProducts()
+  const { cartProducts, removeProductFromCart } = useCart()
 
   return (
     <div>
@@ -19,7 +19,7 @@ export default function Cart() {
             <Button
               $bgColor='crimson'
               $hoverBgColor='darkred'
-              onClick={() => removeFromCart(product.id)}
+              onClick={() => removeProductFromCart(product.id)}
             >
               Eliminar
             </Button>
