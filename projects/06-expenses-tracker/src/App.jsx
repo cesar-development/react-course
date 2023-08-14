@@ -1,10 +1,9 @@
-import icon from './assets/icons/delete.svg'
+import Alert from './components/Alert'
 
 export default function App() {
   return (
     <>
-      <h1>Hola Mundo!!!</h1>
-      <img src={icon} alt="icono" />
+      <Alert />
     </>
   )
 }
