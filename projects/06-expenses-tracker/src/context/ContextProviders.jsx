@@ -1,9 +1,12 @@
+import { AuthProvider } from './auth'
 import { UIProvider } from './ui'
 
 export default function ContextProviders({ children }) {
   return (
-    <UIProvider>
-      {children}
-    </UIProvider>
+    <AuthProvider>
+      <UIProvider>
+        {children}
+      </UIProvider>
+    </AuthProvider>
   )
 }

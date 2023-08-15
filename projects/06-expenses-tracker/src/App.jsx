@@ -1,9 +1,15 @@
-import Alert from './components/Alert'
+import Background from './components/Background'
+import ContextProviders from './context/ContextProviders'
+import Router from './routes/Router'
 
 export default function App() {
   return (
     <>
-      <Alert />
+      <ContextProviders>
+        <Router />
+      </ContextProviders>
+
+      <Background />
     </>
   )
 }
