@@ -19,7 +19,7 @@ export default function Alert({ type, message }) {
     return () => {
       clearTimeout(time)
     }
-  }, [showAlert])
+  }, [showAlert, setShowAlert])
 
   return (
     <div>
