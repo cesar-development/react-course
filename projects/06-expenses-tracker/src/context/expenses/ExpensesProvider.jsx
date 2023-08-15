@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react'
 import { ExpensesContext, expensesReducer } from '.'
-import useExpenses from '../../hooks/useExpenses'
+import useExpensesOfTheMonth from '../../hooks/useExpensesOfTheMonth'
 
 const EXPENSES_INITIAL_STATE = {
   total: 0
@@ -8,7 +8,7 @@ const EXPENSES_INITIAL_STATE = {
 
 export function ExpensesProvider({ children }) {
   const [{ total }, dispatch] = useReducer(expensesReducer, EXPENSES_INITIAL_STATE)
-  const { expenses } = useExpenses()
+  const { expenses } = useExpensesOfTheMonth()
 
   useEffect(() => {
     let accumulatedExpenses = expenses.reduce((acc, el) => {
