@@ -37,9 +37,9 @@ export default function Router() {
           } />
 
           <Route path='/' element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Home />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           } />
         </Routes>
       </Container>
