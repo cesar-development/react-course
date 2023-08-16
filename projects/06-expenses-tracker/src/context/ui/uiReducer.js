@@ -9,6 +9,20 @@ export function uiReducer(state, action) {
       }
     }
 
+    case '[UI] - Set Date': {
+      return {
+        ...state,
+        date: action.payload
+      }
+    }
+
+    case '[UI] - Set Category': {
+      return {
+        ...state,
+        category: action.payload
+      }
+    }
+
     default:
       return state
   }

@@ -4,11 +4,19 @@ import { UIContext } from '../context/ui'
 export default function useUI() {
   const { 
     showAlert, 
-    setShowAlert 
+    setShowAlert,
+    date,
+    setDate,
+    category,
+    setCategory,
   } = useContext(UIContext)
 
   return {
     showAlert,
     setShowAlert,
+    date,
+    setDate,
+    category,
+    setCategory,
   }
 }
