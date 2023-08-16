@@ -19,7 +19,7 @@ export default function useExpensesOfTheMonth() {
         orderBy('date', 'desc'),
         where('date', '>=', startOfTheMonth),
         where('date', '<=', endOfTheMonth),
-        where('uid', '==', user.uid)
+        where('uidUser', '==', user.uid)
       )
 
       const unSuscribe = onSnapshot(

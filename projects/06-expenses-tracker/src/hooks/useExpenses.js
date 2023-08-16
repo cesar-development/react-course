@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { collection, limit, onSnapshot, orderBy, query, startAfter, where } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 
 import { db } from '../firebase/config'
 import useAuth from './useAuth'
@@ -15,7 +15,7 @@ export default function useExpenses() {
     const firebaseQuery = query(
       collection(db, 'expenses'),
       orderBy('date', 'desc'),
-      where('uid', '==', user.uid),
+      where('uidUser', '==', user.uid),
       limit(10),
       startAfter(lastExpense)
     )
@@ -43,7 +43,7 @@ export default function useExpenses() {
     const firebaseQuery = query(
       collection(db, 'expenses'),
       orderBy('date', 'desc'),
-      where('uid', '==', user.uid),
+      where('uidUser', '==', user.uid),
       limit(10),
     )
 
@@ -55,7 +55,7 @@ export default function useExpenses() {
         if (isMoreExpensesToLoad) {
           setLastExpense(snapshot.docs[snapshot.docs.length - 1])
         }
-        
+
         setThereIsMoreToLoad(isMoreExpensesToLoad)
         setExpenses(snapshot.docs.map((document) => ({
           ...document.data(),
