@@ -38,11 +38,22 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(129, 129, 129, 0.75);
+}
+
 #app {
   width: 100%;
 }
 
 @media screen and (max-width: 60rem) {
+
   /* 950px */
   :root {
     font-size: 14px;
