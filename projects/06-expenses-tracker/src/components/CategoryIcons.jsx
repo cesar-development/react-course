@@ -19,5 +19,11 @@ const CATEGORY_ICONS = {
 }
 
 export default function CategoryIcons({ id }) {
-  return CATEGORY_ICONS[id] ? CATEGORY_ICONS[id] : <></>
+  const IconComponent = CATEGORY_ICONS[id]
+
+  return (
+    <>
+      {IconComponent && <IconComponent />}
+    </>
+  )
 }
