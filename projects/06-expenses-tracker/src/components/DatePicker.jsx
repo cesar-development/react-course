@@ -10,25 +10,26 @@ import styled from 'styled-components'
 import useUI from '../hooks/useUI'
 import theme from '../theme/theme'
 
-export default function DatePicker({ initialDate = null}) {
+export default function DatePicker() {
   const { date, setDate } = useUI()
 
   const [inputValue, setInputValue] = useState(() => {
-    return initialDate ? format(initialDate, 'y-MM-dd') : ''
+    return date ? format(date, 'y-MM-dd') : ''
   })
   const [isPopperOpen, setIsPopperOpen] = useState(false)
   const [popperElement, setPopperElement] = useState(null)
 
   const popperRef = useRef(null)
   const inputRef = useRef(null)
+  const isInitialDate = useRef(true)
 
   const popper = usePopper(inputRef.current, popperElement, {
     placement: 'bottom-start',
   })
 
   useEffect(() => {
-    setInputValue(initialDate ? format(initialDate, 'y-MM-dd') : '')
-  }, [initialDate, setInputValue])
+    setInputValue(date ? format(date, 'y-MM-dd') : '')
+  }, [date])
 
   const closePopper = () => {
     setIsPopperOpen(false)
@@ -36,6 +37,7 @@ export default function DatePicker({ initialDate = null}) {
   }
 
   const handleInputChange = (event) => {
+    isInitialDate.current = false
     setInputValue(event.target.value)
     const date = parse(event.target.value, 'y-MM-dd', new Date())
 
@@ -51,6 +53,7 @@ export default function DatePicker({ initialDate = null}) {
   }
 
   const handleDaySelect = (date) => {
+    isInitialDate.current = false
     setDate(date)
 
     if (date) {
@@ -88,7 +91,12 @@ export default function DatePicker({ initialDate = null}) {
         >
           <div
             tabIndex={-1}
-            style={popper.styles.popper}
+            style={{
+              ...popper.styles.popper,
+              backgroundColor: '#fff',
+              borderRadius: '0.625rem',
+              boxShadow: '-10px 10px 30px rgba(129, 129, 129, 0.25)'
+            }}
             ref={setPopperElement}
             className='dialog-sheet'
             role='dialog'

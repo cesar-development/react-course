@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import fromUnixTime from 'date-fns/fromUnixTime'
 import getUnixTime from 'date-fns/getUnixTime'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { ReactComponent as PlusIcon } from '../assets/icons/plus.svg'
 import useAuth from '../hooks/useAuth.js'
 import useUI from '../hooks/useUI'
 import { addExpense, updateExpense } from '../services/expenses'
+import Button from '../styled-elements/Button'
+import { BigInput, ContainerButton, FiltersContainer, Form, Input } from '../styled-elements/FormElements'
 import Alert from './Alert'
 import DatePicker from './DatePicker'
 import SelectCategories from './SelectCategories'
-import Button from '../styled-elements/Button'
-import { FiltersContainer, Form, Input, BigInput, ContainerButton } from '../styled-elements/FormElements'
-import { ReactComponent as PlusIcon } from '../assets/icons/plus.svg'
 
 export default function ExpenseForm({ expense }) {
   const [description, setDescription] = useState('')
@@ -35,7 +35,7 @@ export default function ExpenseForm({ expense }) {
         navigate('/', { replace: true })
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expense, user, navigate])
 
   const handleChangeDescription = (event) => {
@@ -115,7 +115,7 @@ export default function ExpenseForm({ expense }) {
     <Form onSubmit={handleSubmit}>
       <FiltersContainer>
         <SelectCategories />
-        <DatePicker initialDate={expense ? fromUnixTime(expense.data().date) : new Date()} />
+        <DatePicker />
       </FiltersContainer>
 
       <div>
